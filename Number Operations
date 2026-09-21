@@ -1,0 +1,62 @@
+#include<iostream>
+using namespace std;
+int main(){
+	int num,digit,sum=0,reverse=0,original;
+	char selected_option;
+	
+	cout<<"Enter the Number = ";
+	cin>>num;
+	cout<<"What do you want to check ? "<<endl;
+	cout<<"1. Palindrome Number"<<endl;
+	cout<<"2. Armstrong Number"<<endl;
+	cout<<"3. Perfect Number"<<endl;
+	cout<<"4. Sum of the Digit"<<endl;
+	cin>>selected_option;
+	cout<<"Your Choice is "<<selected_option<<endl;
+	original=num;
+	if(selected_option=='1'){
+		while(num>0){
+			digit=num%10;
+			reverse=reverse*10+digit;
+			num=num/10;
+		}
+		if(reverse==original){
+			cout<<"Number is Palindrome";
+		}else{
+			cout<<"Number is not Palindrome";
+		}	
+	}else if(selected_option=='2'){
+		while(num>0){
+			digit = num%10;
+			sum = sum + digit*digit*digit;
+			num = num / 10;
+		}
+		if(sum==original){
+			cout<<"Number is Armstrong";
+		}else{
+			cout<<"Number is not Armstrong";
+		}
+	}else if(selected_option=='3'){
+		for(int i=1;i<num;i++){
+			if(num%i==0){
+				sum = sum + i;
+			}
+		}
+		if(sum==num){
+			cout<<"Number is Perfect";
+		}else{
+			cout<<"Number is not Perfect";
+		}
+		
+	}else if(selected_option=='4'){
+		while(num>0){
+			digit = num % 10;
+			sum = sum + digit;
+			num =  num / 10;
+		}
+		cout<<"Sum of the Digit is "<<sum;
+	}else{
+		cout<<"Invalid Input!";
+	}
+	return 0;
+}
