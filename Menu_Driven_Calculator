@@ -1,0 +1,63 @@
+/*Menu-Driven Calculator
+- Write a menu-driven C++ program using do...while and switch:
+• 1. Add
+• 2. Subtract
+• 3. Multiply
+• 4. Divide
+• 5. Exit
+- The program should continue displaying the menu until the user selects Exit*/
+#include<iostream>
+using namespace std;
+int main(){
+	int choice;
+	int num1, num2;
+	do{
+		cout<<"MENU-DRIVEN CALCULATOR."<<endl;
+		cout<<"1. Add "<<endl;
+		cout<<"2. Subtract "<<endl;
+		cout<<"3. Multiplication "<<endl;
+		cout<<"4. Division "<<endl;
+		cout<<"5. Exit "<<endl;
+		
+		cout<<"Enter your Choice = ";
+		cin>>choice;
+		
+		switch(choice){
+			case 1:
+				cout<<"Enter the First Number = ";
+				cin>>num1;
+				cout<<"Enter the Second Number = ";
+				cin>>num2;
+				cout<<"Addition of two Numbers are "<<num1 + num2<<endl;
+				break;
+			case 2:
+				cout<<"Enter the First Number = ";
+				cin>>num1;
+				cout<<"Enter the Second Number = ";
+				cin>>num2;
+				cout<<"Subtraction of two Numbers are "<<num1 - num2<<endl;
+				break;
+			case 3:
+				cout<<"Enter the First Number = ";
+				cin>>num1;
+				cout<<"Enter the Second Number = ";
+				cin>>num2;
+				cout<<"Multiplication of two Numbers are "<<num1 * num2<<endl;
+				break;
+			case 4:
+				cout<<"Enter the First Number = ";
+				cin>>num1;
+				cout<<"Enter the Second Number = ";
+				cin>>num2;
+				cout<<"Division of two Numbers are "<<num1 / num2<<endl;
+				break;
+			case 5:
+				cout<<"Exiting the Program...";
+				break;
+			default:
+				cout<<"Invalid Input!";
+				break;
+		}
+	}while(choice!=5);
+	return 0;
+}
