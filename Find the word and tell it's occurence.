@@ -1,0 +1,29 @@
+/*Write a C++ program that reads a line of text and counts all occurrences of
+aparticular word.*/
+#include<iostream>
+#include<string>
+using namespace std;
+int main(){
+	string sentence;
+	string findword;
+	int count = 0;
+	
+	cout<<"Enter the Sentence: ";
+	getline(cin, sentence);
+	
+	cout<<"Enter the Word to Find: ";
+	getline(cin, findword);
+	
+	//The First Occurence of the word in the Sentence
+	int position = sentence.find(findword);
+	//Loop will run as long as word is found
+	while(position != string::npos){
+		//If the word is found then Count will increase one time
+		count++;
+		//Look for another in the senetnce after the first word being found
+		position = sentence.find(findword, position + findword.length());
+	}
+	
+	cout<<"The word "<<findword<<" appears "<<count<<" time(s) in the Sentence."<<endl;	
+	return 0;
+}
