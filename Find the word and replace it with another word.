@@ -1,0 +1,29 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main(){
+	string sentence, findword, replaceword;
+	
+	cout<<"Enter the Sentence: ";
+	getline(cin,sentence);
+	
+	cout<<"Enter the word to Find in the Sentence: ";
+	getline(cin,findword);
+	
+	cout<<"Enter the word to Replace in the Sentence: ";
+	getline(cin,replaceword);
+	
+	int position = sentence.find(findword);
+	
+	//Loop as long as the word is found
+	while(position != string::npos){
+		// Replace (start position, length of word to remove, new word)
+		sentence.replace(position, findword.length(), replaceword);
+		// Look for the word again further down the sentence
+		position = sentence.find(findword, position + replaceword.length());
+	} 
+	//New Sentence
+	cout<<"New Sentence: "<<sentence<<endl;
+	return 0;
+}
