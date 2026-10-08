@@ -1,0 +1,67 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void spiralmatrix(int n){
+	vector<vector<int> > matrix(n,vector<int>(n,0));
+	int left = 0;
+	int right = n - 1;
+	int top = 0;
+	int bottom = n - 1;
+	int num = 1;
+	
+	while(top <= bottom && left <= right){
+		//Loop 1(Left to Right) Print Top Row
+		for(int i = left; i <= right; i++){
+			matrix[top][i] = num++;
+		}
+		top++;
+		
+		//Loop 2(Top to Bottom) Print Right Column
+		for(int j = top; j <= bottom; j++){
+			matrix[j][right] = num++;
+		}
+		right--;
+		
+		//Conditional Statement 1 (Check whether Top is still less than or Equal to Bottom or Not.)
+		if(top <= bottom){
+			//Loop 3(Right to Left) Print Bottom Row
+			for(int k = right; k >= left; k--){
+				matrix[bottom][k] = num++;
+			}
+			right--;
+		}
+		
+		//Conditional Statement 2 (Check whether Left is still less than or Equal to Right or Not.)
+		if(left <= right){
+			//Loop 4(Bottom to Top) Print Left Column
+			for(int l = bottom; l >= top; l--){
+				matrix[l][left] = num++;
+			}
+			left++;
+		}		
+	}
+	//Print the Matrix
+	for(int w = 0; w < n; w++){
+		cout<<"[ ";
+		for(int v = 0; v < n; v++){
+			cout<<matrix[w][v]<<" ";
+		}
+		cout<<"]";
+		cout<<endl;
+	}
+}
+	
+	//Main Function
+	int main(){
+		int n;
+		//Enter the Number
+		cout<<"Enter the Number: ";
+		cin>>n;
+		// N x N Matrix
+		cout<<"Your "<<n<<" x "<<n<<" Spiral Matrix is ";
+		//Function for Spiral Matrix
+		spiralmatrix(n);
+		
+		return 0;
+	}
