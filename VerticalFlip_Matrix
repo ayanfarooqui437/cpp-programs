@@ -1,4 +1,4 @@
-//Horizontal Flip of the Matrix(N x N)
+//Vertical Flip of the Matrix(N x N)
 #include<iostream>
 #include<vector>
 #include<algorithm>
