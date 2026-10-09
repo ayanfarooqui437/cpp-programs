@@ -1,0 +1,61 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+void rotate(vector<vector<int> >& matrix){
+	int n = matrix.size();
+	
+	//Transpose of the Matrix
+	for(int j = 0; j < n; j++){
+		for(int i = j + 1; i < n; i++){
+			swap(matrix[j][i], matrix[i][j]);
+		}
+	}
+	
+	//Reverse each Row
+	for(int i = 0; i < n; i++){
+		reverse(matrix[i].begin(),  matrix[i].end());
+	}
+}
+//Main Function
+int main(){
+	int n;
+	cout<<"Enter the Size of the Matrix (N x N): ";
+	cin>>n;
+	
+	vector<vector<int> > matrix(n, vector<int>(n));
+	
+	//Entering the Element of the Matrix
+	cout<<"Enter the Elements of the Matrix: "<<endl;
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < n; j++){
+			cout<<"Enter the ["<<i<<"]["<<j<<"] Element of the Matrix: ";
+			cin>>matrix[i][j];
+		}
+	}
+	//Displaying of the Matrix
+	cout<<"Displaying the Matrix: "<<endl;
+		for(int i = 0; i  < n; i++){
+		cout<<"[ ";
+		for(int j = 0; j < n; j++){
+			cout<<matrix[i][j]<<" ";
+		}
+		cout<<"]";
+		cout<<endl;
+	}
+	
+	rotate(matrix);
+	cout<<endl;
+	//Rotation of the Matrix by 90 Degree
+	cout<<"Rotation of the Matrix by 90 Degree: "<<endl;
+	for(int i = 0; i  < n; i++){
+		cout<<"[ ";
+		for(int j = 0; j < n; j++){
+			cout<<matrix[i][j]<<" ";
+		}
+		cout<<"]";
+		cout<<endl;
+	}
+	return 0;
+}
