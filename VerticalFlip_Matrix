@@ -1,0 +1,53 @@
+//Horizontal Flip of the Matrix(N x N)
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+void VerticalFlip(vector<vector<int> >& matrix){
+	reverse(matrix.begin(), matrix.end());
+}
+
+//Main Function
+int main(){
+	int n;
+	cout<<"Enter the Size of the Matrix (N x N): ";
+	cin>>n;
+	
+	vector<vector<int> >matrix(n, vector<int>(n));
+	//Entering the Elements of the Matrix
+	cout<<"Enter the Elements of the Matrix: "<<endl;
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < n; j++){
+			cout<<"Enter the ["<<i<<"]["<<j<<"] Element of the Matrix: ";
+			cin>>matrix[i][j];
+		}
+	}
+	cout<<endl;
+	
+	//Displaying the Matrix
+	cout<<"The Matrix is: "<<endl;
+	for(int i = 0; i < n; i++){
+		cout<<"[ ";
+		for(int j = 0; j < n; j++){
+			cout<<matrix[i][j]<<" ";
+		}
+		cout<<"]";
+		cout<<endl;
+	}
+	
+	VerticalFlip(matrix);
+	
+	//The Vertically Flip Matrix of the Given Matrix
+	cout<<"The Vertical Matrix of the Matrix: "<<endl;
+	for(int i = 0; i < n; i++){
+		cout<<"[ ";
+		for(int j = 0; j < n; j++){
+			cout<<matrix[i][j]<<" ";
+		}
+		cout<<"]";
+		cout<<endl;
+	}
+	return 0;
+}
