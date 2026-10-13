@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+
+class LinearSearch
+{
+private:
+    int *arr;
+    int n;
+
+public:
+    // Constructor
+    LinearSearch()
+    {
+        arr = nullptr;
+        n = 0;
+    }
+
+    // Create dynamic array
+    void createArray()
+    {
+        cout << "Enter number of elements: ";
+        cin >> n;
+
+        arr = new int[n];
+
+        cout << "Enter " << n << " elements:\n";
+        for (int i = 0; i < n; i++)
+        {
+            cin >> arr[i];
+        }
+    }
+
+    // Display array elements
+    void displayArray()
+    {
+        cout << "\nArray elements are: ";
+        for (int i = 0; i < n; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    // Linear search
+    void searchElement()
+    {
+        int key;
+        cout << "\nEnter the element to search: ";
+        cin >> key;
+
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] == key)
+            {
+                cout << "Element found at index position: " << i << endl;
+                return;
+            }
+        }
+
+        cout << "Element not found in the array." << endl;
+    }
+
+    // Destructor to free memory
+    ~LinearSearch()
+    {
+        delete[] arr;
+    }
+};
+
+int main()
+{
+    LinearSearch obj;
+
+    obj.createArray();
+    obj.displayArray();
+    obj.searchElement();
+
+    return 0;
+}
