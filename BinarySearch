@@ -1,0 +1,65 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+class LinearSearch{
+	public:
+		vector<int> arr;
+		int n , key;
+		
+		void CreateArray(){
+			cout<<"Enter the Size of the Array: ";
+			cin>>n;
+			
+			arr.resize(n);
+			for(int i = 0; i < n ; i++){
+				cout<<"Enter the "<<i<<"th Element of the Array: ";
+				cin>>arr[i];
+			}
+			
+			sort(arr.begin(), arr.end());
+		}
+		
+		void DisplayArray(){
+			cout<<"The Elements of the Sorted Array is :"<<endl;
+			cout<<"[ ";
+			for(int i = 0; i < n; i++){
+				cout<<arr[i]<<" ";
+			}
+			cout<<"]"<<endl;
+		}
+		
+		void SearchElement(){
+			 cout<<"Enter the Element to Search in the Array: ";
+			 cin>>key;
+			 
+			 int low = 0 , high = n - 1;
+			 
+			 while(low <= high){
+			 	int mid = (high + low)/2;
+			 	
+			 	if(arr[mid] == key){
+			 		cout<<"Found at Index "<<mid<<endl;
+			 		return ;
+				 }else if(arr[mid] < key){
+				 	low = mid + 1;
+				 }else{
+				 	high = mid - 1;
+				 }
+			 }
+			 cout<<"Element is Not Found!"<<endl;
+		}
+	
+};
+
+int main(){
+	LinearSearch obj;
+	
+	obj.CreateArray();
+	obj.DisplayArray();
+	obj.SearchElement();
+	
+	return 0;
+}
