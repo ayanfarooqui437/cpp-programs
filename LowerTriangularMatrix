@@ -1,0 +1,47 @@
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+//Creating a Lower Triangular Matrix
+vector<vector<int> > CreateLowerTriangularMatrix(int n){
+	vector<vector<int> > matrix(n, vector<int>(n, 0));
+	
+	int val = 1;
+	
+	for(int i = 0; i < n ; ++i){
+		for(int j = 0 ; j <= i; ++j){ //Most Important Part
+			matrix[i][j] = val++;
+		}
+	}
+	
+	return matrix;
+}
+
+//Print the Matrix
+void PrintLowerTriangularMatrix(const vector<vector<int> >& matrix){
+	int n = matrix.size();
+	
+	for(int i = 0; i < n; ++i){
+		cout<<"[ ";
+		for(int j = 0; j < n; ++j){
+			cout<<matrix[i][j]<<" ";
+		}
+		cout<<"]";
+		cout<<endl;
+	}
+	
+}
+
+//Main Function
+int main(){
+	//Enter the size of the Matrix
+	int n;
+	cout<<"Enter the Size of the Matrix (N x N): ";
+	cin>>n;
+	//Introducing A Variable Vector
+	vector<vector<int> > LowerMatrix = CreateLowerTriangularMatrix(n);
+	//Printing the Matrix
+	PrintLowerTriangularMatrix(LowerMatrix);
+	return 0;
+}
