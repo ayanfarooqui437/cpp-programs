@@ -1,0 +1,77 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+class Solution{
+	public:
+		//Two POinter Approach(CONVERGENCE)
+		vector<int> TwoSum(const vector<int>& numbers, int target){
+			int n = numbers.size();
+			int left = 0; //First Pointer
+			int right = n - 1;//Second Pointer
+			//While Loop
+			while(left < right){
+				//Now, we have to have a current Sum for it to be Equal to the Target.
+				int CurrentSum = numbers[left] + numbers[right];
+				//Now, we have to check whether the Cuurent Sum is Equal to Target Element or Not.
+				if(CurrentSum == target){
+					//If, Current Sum is Equal to Target Element.Then, Return the Indices of it.
+					return{left + 1, right + 1};
+					//Here, we check whether it issmaller than Target or Not.
+				}else if(CurrentSum < target){
+					//Increasing the Left Pointer for to be Greater and increasing the Current Sum to be Equal to the Target Element.
+					left++;
+				}else{
+					//Decreasing the Right Pointer for the Current Sum to be Equal to the Target Element.
+					right--;
+				}
+			}
+			return {};
+		}
+};
+
+//Main Function
+int main(){
+	Solution sol;
+	int num;
+	cout<<"Enter the Size of the Array: ";
+	cin>> num;
+	
+	if(num < 2){ 
+	cout<<"Array Must have atleast two Elements to Find a Pair. "<<endl;
+	return 0;
+	}
+	
+	vector<int> nums(num);
+	cout<<"Enter the Elements of the Array:- "<<endl;
+	for(int i = 0; i < num; i++){
+		cin>>nums[i];
+	}
+	
+	//Sorting the Array for applying the Two Pointer approach
+	sort(nums.begin(), nums.end());
+	
+	//The Sorted Array
+	cout<<"The Sorted Arrray:- "<<endl;
+	cout<<"[ ";
+	for(int i = 0; i < num; i++){
+		cout<<nums[i]<<" ";
+	}
+	cout<<"]";
+	cout<<endl;
+	//Enter the Target Element of your choice
+	int TargetElement;
+	cout<<"Enter the Target Element of your choice:- ";
+	cin>>TargetElement;
+	//Initialzing another Vector named Result
+	vector<int> result = sol.TwoSum(nums, TargetElement);
+	//To check the Indices the Elements of the Array.
+	if(!result.empty()){
+		cout<<"Indices Found: ["<<result[0]<<","<<result[1]<<"]"<<endl;
+	}else{
+		cout<<"No Two Numbers are ADD UP to the TARGET."<<endl;
+	}
+	return 0;
+}
