@@ -1,0 +1,53 @@
+#include<iostream>
+#include<cctype>
+#include<string>
+
+using namespace std;
+
+class Solution{
+	public:
+		bool isPalindrome(string s){
+			int left = 0;
+			int right = s.length() - 1;
+			while(left < right){
+				//Skips the Non-AlphaNumeric Characters from the Left
+				while(left < right && !isalnum(s[left])){
+					cout<<"Skipping the Non-Alphanumeric Characters from the Left = "<<left<<endl;
+					left++;
+				}
+				//Skips the Non-Alphanumeric Characters from the Right
+				while(left < right && !isalnum(s[right])){
+					cout<<"Skipping the Non-Alphanumeric Characters from the Right = "<<right<<endl;
+					right--;
+				}
+				//Converts the Characters from the UpperCase to the LowerCase
+				char charLeft = tolower(s[left]);
+				char charRight = tolower(s[right]);
+				
+				cout<<"Comparing the Character from the Left "<<s[left]<<" to the Characters from the Right "<<s[right]<<endl;
+				if(charLeft != charRight){
+					return false;//Mismatch Found
+				}
+				//Moves the Pointers Inwards
+				left++;
+				right--;
+			}
+			//Checks the Whole strings successfully
+			return true;
+		}
+		
+};
+
+int main(){
+	Solution sol;
+	string InputString;
+	cout<<"Enter the String: ";
+	getline(cin, InputString);
+	cout<<"Analyzing the String: "<<InputString<<endl;
+	if(sol.isPalindrome(InputString)){
+		cout<<"Yes! It is A Valid Palindrome!!!"<<endl;
+	}else{
+		cout<<"No! It is Not A Valid Palindrome!!!"<<endl;
+	}
+	return 0;
+}
