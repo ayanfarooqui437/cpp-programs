@@ -1,0 +1,41 @@
+/*Create a Book structure containing book_id, title, author name and price.
+Write a C++ program to pass a structure as a function argument and print the book details.*/
+#include<iostream>
+#include<string>
+using namespace std;
+
+struct Book{
+	int book_id;
+	string title;
+	string author_name;
+	float price;
+};
+
+void write(Book &b){
+	cout<<"Enter the Book ID Number:- ";
+	cin>>b.book_id;
+	cin.ignore();
+	cout<<"Enter the Title of the Book:- ";
+	getline(cin, b.title);
+	
+	cout<<"Enter the Author of the Book:- ";
+	getline(cin, b.author_name);
+	
+	cout<<"Enter the Price of thr Book:- ";
+	cin>>b.price;
+}
+
+void display(Book b){
+	cout<<"===========BOOK DETAILS==========="<<endl;
+	cout<<"Book ID:- "<<b.book_id<<endl;
+	cout<<"Title of the Book:- "<<b.title<<endl;
+	cout<<"Author of the Book:- "<<b.author_name<<endl;
+	cout<<"Price of the Book:- "<<b.price<<endl;
+}
+
+int main(){
+	Book b1;
+	write(b1);
+	display(b1);
+	return 0;
+}
