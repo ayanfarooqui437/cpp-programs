@@ -1,0 +1,81 @@
+#include<iostream>
+using namespace std;
+
+struct complex{
+	float real;
+	float imaginary;
+};
+
+void read(complex &c){
+	cout<<"Enter the Real Part:- ";
+	cin>>c.real;
+	
+	cout<<"Enter the Imaginary Part:- ";
+	cin>>c.imaginary;
+}
+
+void display(complex &c){
+	cout<<"Real Part is "<<c.real<<endl;
+	if(c.imaginary >= 0){
+		cout<<"The Imaginary Part is "<<c.imaginary<<"i"<<endl;
+	}else{
+		cout<<"The Imaginary Part is "<<-c.imaginary<<"i"<<endl;
+	}
+}
+
+complex add(complex c1, complex c2){
+	complex result;
+	
+	result.real = c1.real + c2.real;
+	
+	result.imaginary = c1.imaginary + c2.imaginary;
+	
+	return result;
+}
+
+complex subtract(complex c1, complex c2){
+	complex result;
+	
+	result.real = c1.real - c2.real;
+	
+	result.imaginary = c1.imaginary - c2.imaginary;
+	
+	return result;
+}
+
+complex multiplication(complex c1, complex c2){
+	complex result;
+	
+	result.real = (c1.real * c2.real) - (c1.imaginary - c2.imaginary);
+	
+	result.imaginary = (c1.real * c2.imaginary) + (c1.imaginary * c2.real);
+	
+	return result;
+}
+
+int main(){
+	complex c1, c2, result;
+	
+	read(c1);
+	read(c2);
+	
+	display(c1);
+	display(c2);
+	
+	cout<<"Addition of the Two Complex Numbers:- ";
+	result = add(c1, c2);
+	display(result);
+	cout<<endl;
+	
+	cout<<"Subtraction of the Two Complex Numbers:- ";
+	result = subtract(c1, c2);
+	display(result);
+	cout<<endl;
+	
+	cout<<"Multiplication of the Two Complex Numbers:- ";
+	result = multiplication(c1, c2);
+	display(result);
+	cout<<endl;
+	
+	return 0;
+}
