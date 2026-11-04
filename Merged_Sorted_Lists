@@ -1,0 +1,99 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+int main(){
+	int num1, num2;
+	
+	cout<<"Enter the Size of the First List:- ";
+	cin>> num1;
+	cout<<"Enter the Size of Second List:- ";
+	cin>> num2;
+	//Initializing the First List
+	vector<int> a(num1);
+	//Enter the Elements of the First List
+	cout<<"Enter the Elements of the First List:- ";
+	for(int i = 0;  i < num1; i++){
+		cin >> a[i];
+	}
+	cout<<endl;
+	
+	cout<<"Elements of the First List is:- ";
+	cout<<"[ ";
+	for(int i = 0; i < num2; i++){
+		cout << a[i] <<" ";
+	}
+	cout<<"]";
+	
+	cout<<endl;
+	//Sorting the First List
+	sort(a.begin(), a.end());
+	cout<<"Sorted First List:- ";
+	cout<<"[ ";
+	for(int i = 0; i < num1; i++){
+		cout << a[i] << " ";
+	}
+	cout<<"]";
+	cout<<endl;
+	
+	//Initializing the Second List
+	vector<int> b(num2);
+	cout<<"Enter the Elements of the Second List:- ";
+	for(int j = 0; j < num2; j++){
+		cin >> b[j];
+	}
+	cout<<endl;
+	
+	cout<<"The Elements of the Second List is:- ";
+	cout<<"[ ";
+	for(int j  = 0; j < num2; j++){
+		cout << b[j] <<" ";
+	}
+	cout <<"]";
+	
+	cout<<endl;
+	//Sorting the Second List
+	sort(b.begin(), b.end());
+	cout<<"Sorted Second List:- ";
+	cout<<"[ ";
+	for(int j = 0; j < num2; j++){
+		cout << b[j] <<" ";
+	}
+	cout<<"]";
+	
+	cout<<endl;
+	vector<int> c;
+	int k = 0, l = 0;
+	//Main Logic
+	while(k < num1 && l < num2){
+		if(a[k] < b[l]){
+			c.push_back(a[k]);
+			k++;
+		}else{
+			c.push_back(b[l]);
+			l++;
+		}
+	}
+	
+	while(k < num1){
+		c.push_back(a[k]);
+		k++;
+	}
+	
+	while(l < num2){
+		c.push_back(b[l]);
+		l++;
+	}
+	cout<<endl;
+	
+	cout<<"Merged Sorted List:- ";
+	cout<<"[ ";
+	for(int i = 0; i < c.size(); i++){
+		cout << c[i] << " ";
+	}
+	cout<<"]";
+	
+	return 0;
+}
