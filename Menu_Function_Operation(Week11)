@@ -1,0 +1,64 @@
+/* Write a menu-driven program in C++ to perform all basic arithmetic opera-
+tions: addition, subtraction, multiplication, and division of two given values using func-
+tions and switch case. The program receives two numbers; the required operation to be
+performed from the keyboard, and displays the particular result of the required operation.*/
+#include<iostream>
+
+using namespace std;
+
+float addition(float a, float b){
+	return a + b;
+}
+
+float subtraction(float a, float b){
+	return a - b;
+}
+
+float multiplication(float a, float b){
+	return a * b;
+}
+
+float division(float a, float b){
+	return a / b;
+}
+
+int main(){
+	float num1, num2;
+	int choice;
+	
+	cout<<"Enter the First Number:- ";
+	cin>>num1;
+	
+	cout<<"Enter the Second Number:- ";
+	cin>>num2;
+	
+	cout<<"=======MENU for OPERATIONS========"<<endl;
+	cout<<"1. Addition"<<endl;
+	cout<<"2. Subtraction"<<endl;
+	cout<<"3. Multiplication"<<endl;
+	cout<<"4. Division"<<endl;
+	cout<<"Enter your Choice: ";
+	cin>>choice;
+	
+	switch(choice){
+		case 1:
+			cout<<"Addition:- "<<addition(num1, num2);
+			break;
+		case 2:
+			cout<<"Subtraction:- "<<subtraction(num1, num2);
+			break;
+		case 3:
+			cout<<"Multiplication:- "<<multiplication(num1, num2);
+			break;
+		case 4:
+			if(num2 != 0){
+				cout<<"Division:- "<<division(num1, num2);
+			}else{
+				cout<<"Denominator can't be ZERO!!!"<<endl;
+			}
+			break;
+		default:
+			cout<<"INVALID CHOICE!!!"<<endl;
+	}
+	
+}
