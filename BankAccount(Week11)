@@ -1,0 +1,78 @@
+/* Define a class Bank Account to represent a bank account. Include the follow-
+ing members: Data Members: o Name of the depositor o Account Number o Type of ac-
+count 0 Balance amount in the account Member Functions: 0 TO assign an initial value 0
+To deposit an amount o To withdraw an amount after checking*/
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class BankAccount{
+	private:
+		string UserName;
+		long AccountNumber;
+		string AccountType;
+		int BalanceAmount;
+	public:
+		void GiveDetails(){
+			cout<<"Enter the Account Holder Name:- ";
+			cin.ignore();
+			getline(cin, UserName);
+			
+			cout<<"Enter the Account Number:- ";
+			cin>>AccountNumber;
+			
+			cout<<"Enter the Account Type (Current/Saving):- ";
+			cin>>AccountType;
+			
+			cout<<"Enter the Current Balance:- ";
+			cin>>BalanceAmount;
+		}
+		
+		void DepositMoney(){
+			float Amount;
+			cout<<"Enter the Amount of Money you want to Deposit:- ";
+			cin>>Amount;
+			
+			BalanceAmount = BalanceAmount + Amount;
+			cout<<"AMOUNT SUCCESSFULLY DEPOSITED!!!"<<endl;
+			cout<<"Balance after Deposit:- "<<BalanceAmount<<endl;
+		}
+		
+		void WithdrawalMoney(){
+			float Withdrawal;
+			cout<<"Enter the Amount of Money you want to Withdraw:- ";
+			cin>>Withdrawal;
+			
+			if(Withdrawal <= BalanceAmount){
+				BalanceAmount = BalanceAmount - Withdrawal;
+				cout<<"AMOUNT SUCCESSFULLY WITHDRAWAN!!!"<<endl;
+				cout<<"Balance After Withdrawal:- "<<BalanceAmount<<endl;
+			}else{
+				cout<<"INSUFFICIANT BALANCE!!!"<<endl;
+			}
+			
+		}
+		
+		void DisplayDetails(){
+			cout<<"Name:- "<<UserName<<endl;
+			cout<<"Account Number:- "<<AccountNumber<<endl;
+			cout<<"Account Type:- "<<AccountType<<endl;
+			cout<<"Current Balance:- "<<BalanceAmount<<endl;	
+		}
+};
+
+int main(){
+	BankAccount acc;
+	
+	acc.GiveDetails();
+	acc.DisplayDetails();
+	
+	acc.DepositMoney();
+	acc.DisplayDetails();
+	
+	acc.WithdrawalMoney();
+	acc.DisplayDetails();
+	
+	return 0;
+}
