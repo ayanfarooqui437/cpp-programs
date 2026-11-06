@@ -1,0 +1,49 @@
+/* Write a menu-driven program in C•• to perform all basic arithmetic opera-
+tions: addition, subtraction, multiplication, and division of two given values. me program
+receives two values and the required operation to be performed from the keyboard, and
+displays the particular result Of the necessary operation.*/
+#include<iostream>
+
+using namespace std;
+
+int main(){
+	int num1, num2, choice;
+	
+	cout<<"Enter the First Number:- ";
+	cin>>num1;
+	
+	cout<<"Enter the Second Number:- ";
+	cin>>num2;
+	
+	cout<<"========MENU for OPERATION========="<<endl;
+	cout<<"1. Addition"<<endl;
+	cout<<"2. Subtraction"<<endl;
+	cout<<"3. Multiplication"<<endl;
+	cout<<"4. Division"<<endl;
+	
+	cout<<"Enter your choice:- ";
+	cin>>choice;
+	
+	switch(choice){
+		case 1:
+			cout<<"Addition:- "<<num1 + num2<<endl;
+			break;
+		case 2:
+			cout<<"Subtraction:- "<<num1 - num2<<endl;
+			break;
+		case 3:
+			cout<<"Multiplication:- "<<num1 * num2<<endl;
+			break;
+		case 4:
+			if(num2 != 0){
+				cout<<"Division:- "<<num1 / num2<<endl;
+			}else{
+				cout<<"Can't be divided as Denominator is ZERO!!!"<<endl;
+			}
+			break;
+		default:
+			cout<<"INVALID CHOICE!!!"<<endl;
+			break;
+	}
+	return 0;
+}
