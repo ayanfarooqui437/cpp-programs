@@ -1,0 +1,37 @@
+//Count the Number of Objects Created and Destroyed.
+#include<iostream>
+using namespace std;
+
+class Demo
+{
+    static int count;
+
+    public:
+    //Constructor
+    Demo()
+    {
+        count++;
+        cout<<"Object Created"<<endl;
+    }
+    //DeConstructor
+    ~Demo()
+    {
+        cout<<"Object Destroyed"<<endl;
+    }
+
+    static void display()
+    {
+        cout<<"Total Objects Created: "<<count;
+    }
+};
+
+int Demo::count=0;
+
+int main()
+{
+    Demo a,b,c;
+
+    Demo::display();
+
+    return 0;
+}
