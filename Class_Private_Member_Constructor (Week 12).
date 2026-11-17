@@ -1,0 +1,31 @@
+//Class with two private data member, and use of constructor
+#include<iostream>
+using namespace std;
+class Student{
+    private:
+    int roll;
+    int marks;
+
+    public:
+    //Constructor
+    Student()
+    {
+        roll=1;
+        marks=90;
+    }
+
+    void display()
+    {
+        cout<<"Roll Number: "<<roll<<endl;
+        cout<<"Marks: "<<marks;
+    }
+};
+
+int main()
+{
+    Student s;
+
+    s.display();
+
+    return 0;
+}
