@@ -1,0 +1,52 @@
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+// Function to insert a substring
+void insertString(string &str, string sub, int pos){
+    if(pos >= 0 && pos <= str.length()){
+        str.insert(pos, sub);
+        cout<<"After Insertion: "<<str<<endl;
+    }
+    else{
+        cout<<"Invalid Position!"<<endl;
+    }
+}
+
+// Function to delete n characters
+void deleteString(string &str, int pos, int n){
+    if(pos >= 0 && pos <= str.length() && n >= 0){
+        str.erase(pos, n);
+        cout<<"After Deletion: "<<str<<endl;
+    }
+    else{
+        cout<<"Invalid Position!"<<endl;
+    }
+}
+
+int main(){
+    string str, sub;
+    int pos, n;
+
+    cout<<"Enter the Main String: ";
+    getline(cin, str);
+
+    cout<<"Enter the Substring to Insert: ";
+    getline(cin, sub);
+
+    cout<<"Enter the Position for Insertion: ";
+    cin>>pos;
+
+    insertString(str, sub, pos);
+
+    cout<<"\nEnter the Position for Deletion: ";
+    cin>>pos;
+
+    cout<<"Enter Number of Characters to Delete: ";
+    cin>>n;
+
+    deleteString(str, pos, n);
+
+    return 0;
+}
