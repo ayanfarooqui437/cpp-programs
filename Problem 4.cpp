@@ -6,12 +6,13 @@ data values and a print() member function to print which object has invoked it u
 #include <iostream>
 #include <string>
 using namespace std;
-
+//Class Declaration
 class pntr_obj
 {
+	//Private
     int roll_no;
     string name;
-
+//Public
 public:
     void set_data(int roll_no, string name)
     {
@@ -32,9 +33,9 @@ int main()
 {
     pntr_obj obj1, obj2, obj3;
 
-    obj1.set_data(101, "Rahul");
-    obj2.set_data(102, "Aman");
-    obj3.set_data(103, "Priya");
+    obj1.set_data(101, "Ayan Farooqui");
+    obj2.set_data(102, "Syed Ahmed Mustafa");
+    obj3.set_data(103, "John");
 
     obj1.print();
     obj2.print();

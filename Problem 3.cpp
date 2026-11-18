@@ -28,8 +28,9 @@ int main()
     mean = sum / n;
 
     // Calculate variance using pointer
-    for (int i = 0; i < n; i++)
-        variance += (*(p + i) - mean) * (*(p + i) - mean);
+    for (int i = 0; i < n; i++){
+    	variance += (*(p + i) - mean) * (*(p + i) - mean);
+	}
 
     variance = variance / n;
     sd = sqrt(variance);

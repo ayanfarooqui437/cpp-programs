@@ -29,7 +29,10 @@ int main()
     int x, y;
 
     cout << "Enter two numbers: ";
-    cin >> x >> y;
+    cin >> x;
+    
+    cout <<"Enter the Second Number: ";
+    cin>>y;
 
     obj.setData(x, y);
 
