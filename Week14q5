@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+class Numbers
+{
+    int a,b,c,d,e;
+
+public:
+    Numbers(int x,int y,int z,int p,int q)
+    {
+        a=x;
+        b=y;
+        c=z;
+        d=p;
+        e=q;
+    }
+
+    friend float friendFunc1(Numbers,int,int);
+    friend float friendFunc2(Numbers,int,int,int);
+};
+
+float friendFunc1(Numbers n,int x,int y)
+{
+    return (n.a+n.b+x+y)/4.0;
+}
+
+float friendFunc2(Numbers n,int x,int y,int z)
+{
+    return (n.c+n.d+n.e+x+y+z)/6.0;
+}
+
+int main()
+{
+    Numbers obj(10,20,30,40,50);
+
+    cout<<"Average (friendFunc1) = "
+        <<friendFunc1(obj,60,70)<<endl;
+
+    cout<<"Average (friendFunc2) = "
+        <<friendFunc2(obj,60,70,80)<<endl;
+
+    return 0;
+}
