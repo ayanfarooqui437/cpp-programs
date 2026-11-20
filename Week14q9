@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+class Exception
+{
+    string message;
+
+public:
+    Exception(string msg)
+    {
+        message = msg;
+    }
+
+    string getMessage()
+    {
+        return message;
+    }
+};
+
+int main()
+{
+    try
+    {
+        throw Exception("Custom Exception Occurred!");
+    }
+    catch(Exception e)
+    {
+        cout << "Caught Exception: "
+             << e.getMessage() << endl;
+    }
+
+    cout << "Finally Block Executed (C++ has no finally block)." << endl;
+
+    return 0;
+}
