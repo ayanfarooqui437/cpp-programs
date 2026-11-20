@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class Mean
+{
+    int n;
+    int arr[100];
+
+public:
+    void getData()
+    {
+        cout << "Enter number of elements: ";
+        cin >> n;
+
+        for(int i=0;i<n;i++)
+            cin >> arr[i];
+    }
+
+    friend void calculateMean(Mean);
+};
+
+void calculateMean(Mean m)
+{
+    int sum = 0;
+
+    for(int i=0;i<m.n;i++)
+        sum += m.arr[i];
+
+    cout << "Mean = " << (float)sum/m.n;
+}
+
+int main()
+{
+    Mean m;
+    m.getData();
+
+    calculateMean(m);
+
+    return 0;
+}
