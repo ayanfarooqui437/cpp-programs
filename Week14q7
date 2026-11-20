@@ -1,0 +1,27 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    ofstream fout("data.txt");
+
+    fout << "Welcome to C++ File Handling";
+    fout.close();
+
+    ifstream fin("data.txt");
+
+    string text,line;
+
+    while(getline(fin,line))
+        text += line;
+
+    fin.close();
+
+    cout << "Reverse Order:" << endl;
+
+    for(int i=text.length()-1;i>=0;i--)
+        cout << text[i];
+
+    return 0;
+}
