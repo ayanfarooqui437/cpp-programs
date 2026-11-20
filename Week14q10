@@ -1,0 +1,150 @@
+#include <iostream>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+    Node *left, *right;
+
+    Node(int value)
+    {
+        data = value;
+        left = right = NULL;
+    }
+};
+
+class BST
+{
+public:
+    Node* root;
+
+    BST()
+    {
+        root = NULL;
+    }
+
+    // Insert Node
+    Node* insert(Node* root, int value)
+    {
+        if(root == NULL)
+            return new Node(value);
+
+        if(value < root->data)
+            root->left = insert(root->left, value);
+        else if(value > root->data)
+            root->right = insert(root->right, value);
+
+        return root;
+    }
+
+    // Search Node
+    bool search(Node* root, int key)
+    {
+        if(root == NULL)
+            return false;
+
+        if(root->data == key)
+            return true;
+
+        if(key < root->data)
+            return search(root->left, key);
+        else
+            return search(root->right, key);
+    }
+
+    // Find Minimum Value Node
+    Node* findMin(Node* root)
+    {
+        while(root->left != NULL)
+            root = root->left;
+
+        return root;
+    }
+
+    // Delete Node
+    Node* deleteNode(Node* root, int key)
+    {
+        if(root == NULL)
+            return root;
+
+        if(key < root->data)
+            root->left = deleteNode(root->left, key);
+
+        else if(key > root->data)
+            root->right = deleteNode(root->right, key);
+
+        else
+        {
+            // Node with no child
+            if(root->left == NULL && root->right == NULL)
+            {
+                delete root;
+                return NULL;
+            }
+
+            // Node with one child
+            else if(root->left == NULL)
+            {
+                Node* temp = root->right;
+                delete root;
+                return temp;
+            }
+
+            else if(root->right == NULL)
+            {
+                Node* temp = root->left;
+                delete root;
+                return temp;
+            }
+
+            // Node with two children
+            Node* temp = findMin(root->right);
+            root->data = temp->data;
+            root->right = deleteNode(root->right, temp->data);
+        }
+
+        return root;
+    }
+
+    // Inorder Traversal
+    void inorder(Node* root)
+    {
+        if(root != NULL)
+        {
+            inorder(root->left);
+            cout << root->data << " ";
+            inorder(root->right);
+        }
+    }
+};
+
+int main()
+{
+    BST tree;
+
+    tree.root = tree.insert(tree.root, 50);
+    tree.root = tree.insert(tree.root, 30);
+    tree.root = tree.insert(tree.root, 70);
+    tree.root = tree.insert(tree.root, 20);
+    tree.root = tree.insert(tree.root, 40);
+    tree.root = tree.insert(tree.root, 60);
+    tree.root = tree.insert(tree.root, 80);
+
+    cout << "Inorder Traversal: ";
+    tree.inorder(tree.root);
+
+    int key = 40;
+
+    if(tree.search(tree.root, key))
+        cout << "\nElement " << key << " found.";
+    else
+        cout << "\nElement not found.";
+
+    tree.root = tree.deleteNode(tree.root, 30);
+
+    cout << "\nAfter Deletion of 30: ";
+    tree.inorder(tree.root);
+
+    return 0;
+}
