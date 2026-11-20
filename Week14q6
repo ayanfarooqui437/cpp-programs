@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+class Student
+{
+    int rollNo;
+    string name;
+
+public:
+    Student(int r,string n)
+    {
+        rollNo=r;
+        name=n;
+    }
+
+    friend void display(Student);
+};
+
+void display(Student s)
+{
+    cout << "Roll No : " << s.rollNo << endl;
+    cout << "Name    : " << s.name << endl;
+}
+
+int main()
+{
+    Student s(101,"Ayan");
+
+    display(s);
+
+    return 0;
+}
