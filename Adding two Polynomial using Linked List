@@ -1,0 +1,95 @@
+#include<iostream>
+using namespace std;
+class Node{
+	public:
+		int coeff;
+		int expX;
+		int expY;
+		int expZ;
+		Node *next;
+		
+		Node(int c, int x, int y , int z){
+			coeff = c;
+			expX = x;
+			expY = y;
+			expZ = z;
+			next = NULL;
+		}
+		
+		void display(Node* head){
+			while(head != NULL){
+				cout << head->coeff << "x^" << head->expX << "y^" << head->expY << "z^" << head->expZ;
+				head = head->next;
+				if(head != NULL){
+					cout << "+";
+				}
+			}
+		}
+		
+		Node* addPolynomial(Node *p1, Node *p2){
+			Node *result = NULL;
+			Node *tail = NULL;
+			while(p1 != NULL && p2 != NULL){
+				Node* newNode;
+				if(p1->expX == p2->expX && p1->expY == p2->expY && p1->expZ == p2->expZ){
+					newNode = new Node(p1->coeff + p2->coeff, p1->expX, p1->expY, p1->expZ);
+					p1 = p1->next;
+					p2 = p2->next;
+				}else if(p1->expX > p2->expX){
+					newNode = new Node(p1->coeff, p1->expX, p1->expY, p1->expZ);
+					{
+						p1 = p1->next;
+					}
+				}else{
+					newNode = new Node(p2->coeff, p2->expX, p2->expY, p2->expZ);
+					{
+						p2 = p2->next;
+					}
+				}
+				
+				if(result == NULL){
+					result = newNode;
+					tail = newNode;
+				}else{
+					tail->next = newNode;
+					tail = newNode;
+				}
+			}
+			while(p1 != NULL){
+				tail->next = new Node(p1->coeff, p1->expX, p1->expY, p1->expZ);
+					tail = tail->next;
+					p1 = p1->next;
+			}
+			while(p2 != NULL){
+				tail->next = new Node(p2->coeff, p2->expX, p2->expY, p2->expZ);
+				{
+					tail = tail->next;
+					p2 = p2->next;
+				}
+			}
+			return result;
+		}
+};
+
+int main(){
+	Node* p1 = new Node(9, 3, 2, 2);
+	p1->next = new Node(8, 2, 1, 1);
+	p1->next->next = new Node(7, 1, 9, 9);
+	
+	Node* p2 = new Node(10, 4, 3, 3);
+	p2->next = new Node(9, 3, 2, 2);
+	p2->next->next = new Node(8, 2, 1, 1);
+	
+	Node *sum = p1->addPolynomial(p1, p2);
+	
+	cout << "Polynomial 1:- ";
+	p1->display(p1);
+	cout << endl;
+	cout << "Polynomial 2:- ";
+	p2->display(p2);
+	cout << endl;
+	cout << "Sum of the Two Polynomial is:- ";
+	sum->display(sum);
+	
+	return 0;
+}
