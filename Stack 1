@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+
+#define SIZE 5
+
+class Stack
+{
+    int arr[SIZE];
+    int top;
+
+public:
+    Stack()
+    {
+        top = -1;
+    }
+
+    void push(int x)
+    {
+        if (top == SIZE - 1)
+            cout << "Stack Overflow\n";
+        else
+            arr[++top] = x;
+    }
+
+    void pop()
+    {
+        if (top == -1)
+            cout << "Stack Underflow\n";
+        else
+            cout << "Deleted: " << arr[top--] << endl;
+    }
+
+    void peek()
+    {
+        if (top == -1)
+            cout << "Stack Empty\n";
+        else
+            cout << "Top Element: " << arr[top] << endl;
+    }
+
+    void display()
+    {
+        for (int i = top; i >= 0; i--)
+            cout << arr[i] << " ";
+        cout << endl;
+    }
+};
+
+int main()
+{
+    Stack s;
+    int choice, x;
+
+    do
+    {
+        cout << "\n1.Push\n2.Pop\n3.Peek\n4.Display\n5.Exit\n";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            cin >> x;
+            s.push(x);
+            break;
+
+        case 2:
+            s.pop();
+            break;
+
+        case 3:
+            s.peek();
+            break;
+
+        case 4:
+            s.display();
+            break;
+        }
+    } while (choice != 5);
+
+    return 0;
+}
