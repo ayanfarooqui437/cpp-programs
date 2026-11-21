@@ -1,0 +1,105 @@
+//Friend Function Concatenation Linked List
+#include <iostream>
+using namespace std;
+
+class LinkedList;
+
+class Node
+{
+    int data;
+    Node *next;
+
+public:
+    Node(int value)
+    {
+        data = value;
+        next = NULL;
+    }
+
+    friend class LinkedList;
+    friend void concatenate(LinkedList &, LinkedList &);
+};
+
+class LinkedList
+{
+    Node *head;
+
+public:
+    LinkedList()
+    {
+        head = NULL;
+    }
+
+    void insert(int value)
+    {
+        Node *newNode = new Node(value);
+
+        if (head == NULL)
+        {
+            head = newNode;
+            return;
+        }
+
+        Node *temp = head;
+        while (temp->next != NULL)
+            temp = temp->next;
+
+        temp->next = newNode;
+    }
+
+    void display()
+    {
+        Node *temp = head;
+
+        while (temp != NULL)
+        {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+
+    friend void concatenate(LinkedList &, LinkedList &);
+};
+
+void concatenate(LinkedList &L1, LinkedList &L2)
+{
+    if (L1.head == NULL)
+    {
+        L1.head = L2.head;
+        return;
+    }
+
+    Node *temp = L1.head;
+
+    while (temp->next != NULL)
+        temp = temp->next;
+
+    temp->next = L2.head;
+}
+
+int main()
+{
+    LinkedList L1, L2;
+
+    L1.insert(10);
+    L1.insert(20);
+    L1.insert(30);
+
+    L2.insert(40);
+    L2.insert(50);
+    L2.insert(60);
+
+    cout << "List 1: ";
+    L1.display();
+
+    cout << "List 2: ";
+    L2.display();
+
+    concatenate(L1, L2);
+
+    cout << "After Concatenation: ";
+    L1.display();
+
+    return 0;
+}
