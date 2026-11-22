@@ -1,0 +1,147 @@
+#include <iostream>
+using namespace std;
+
+const int m = 3;      // Number of queues
+const int n = 12;     // Total array size
+
+int elements[n];
+int front[m];
+int rear[m];
+int capacity = n / m; // Capacity of each queue
+
+// Initialize queues
+void initialize()
+{
+    for (int i = 0; i < m; i++)
+    {
+        front[i] = -1;
+        rear[i] = -1;
+    }
+}
+
+// Check if queue q is empty
+bool isEmpty(int q)
+{
+    return (front[q] == -1);
+}
+
+// Check if queue q is full
+bool isFull(int q)
+{
+    if (isEmpty(q))
+        return false;
+
+    int start = q * capacity;
+
+    return ((rear[q] - start + 1) % capacity ==
+            (front[q] - start));
+}
+
+// Insert into queue q
+void enqueue(int q, int value)
+{
+    if (isFull(q))
+    {
+        cout << "Queue " << q << " Overflow!" << endl;
+        return;
+    }
+
+    int start = q * capacity;
+
+    if (isEmpty(q))
+    {
+        front[q] = rear[q] = start;
+    }
+    else
+    {
+        rear[q] = start + ((rear[q] - start + 1) % capacity);
+    }
+
+    elements[rear[q]] = value;
+
+    cout << value << " inserted into Queue "
+         << q << endl;
+}
+
+// Delete from queue q
+int dequeue(int q)
+{
+    if (isEmpty(q))
+    {
+        cout << "Queue " << q << " Underflow!" << endl;
+        return -1;
+    }
+
+    int start = q * capacity;
+    int value = elements[front[q]];
+
+    if (front[q] == rear[q])
+    {
+        front[q] = rear[q] = -1;
+    }
+    else
+    {
+        front[q] = start +
+                   ((front[q] - start + 1) % capacity);
+    }
+
+    return value;
+}
+
+// Display queue q
+void display(int q)
+{
+    if (isEmpty(q))
+    {
+        cout << "Queue " << q << " is Empty" << endl;
+        return;
+    }
+
+    int start = q * capacity;
+    int i = front[q];
+
+    cout << "Queue " << q << ": ";
+
+    while (true)
+    {
+        cout << elements[i] << " ";
+
+        if (i == rear[q])
+            break;
+
+        i = start + ((i - start + 1) % capacity);
+    }
+
+    cout << endl;
+}
+
+int main()
+{
+    initialize();
+
+    enqueue(0, 10);
+    enqueue(0, 20);
+    enqueue(0, 30);
+
+    enqueue(1, 100);
+    enqueue(1, 200);
+
+    enqueue(2, 1000);
+    enqueue(2, 2000);
+
+    display(0);
+    display(1);
+    display(2);
+
+    cout << "\nDeleted from Queue 0: "
+         << dequeue(0) << endl;
+
+    cout << "Deleted from Queue 1: "
+         << dequeue(1) << endl;
+
+    display(0);
+    display(1);
+    display(2);
+
+    return 0;
+}
