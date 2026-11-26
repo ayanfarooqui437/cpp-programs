@@ -1,0 +1,156 @@
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Bank
+{
+    private:
+        string name;
+        int account_no;
+        double balance;
+
+        static int created;
+        static int destroyed;
+
+    public:
+
+        // Default Constructor
+        Bank()
+        {
+            name = "Ayan Farooqui";
+            account_no = 12345;
+            balance = 10000;
+
+            created++;
+
+            cout << "\nDefault Constructor Called." << endl;
+        }
+
+        // Parameterized Constructor
+        Bank(string n, int acc, double bal)
+        {
+            name = n;
+            account_no = acc;
+            balance = bal;
+
+            created++;
+
+            cout << "\nParameterized Constructor Called." << endl;
+        }
+
+        // Copy Constructor
+        Bank(const Bank &B)
+        {
+            name = B.name;
+            account_no = B.account_no;
+            balance = B.balance;
+
+            created++;
+
+            cout << "\nCopy Constructor Called." << endl;
+        }
+
+        // Deposit Function
+        void Deposit(double amount)
+        {
+            if(amount > 0)
+            {
+                balance = balance + amount;
+
+                cout << "Deposit Successful!" << endl;
+            }
+            else
+            {
+                cout << "Invalid Deposit Amount!" << endl;
+            }
+        }
+
+        // Withdrawal Function
+        void Withdraw(double amount)
+        {
+            if(amount <= 0)
+            {
+                cout << "Invalid Withdrawal Amount!" << endl;
+            }
+            else if(amount > balance)
+            {
+                cout << "Insufficient Balance!" << endl;
+            }
+            else
+            {
+                balance = balance - amount;
+
+                cout << "Withdrawal Successful!" << endl;
+            }
+        }
+
+        // Display Account Details
+        void Display_Details()
+        {
+            cout << "\n------ ACCOUNT DETAILS ------" << endl;
+
+            cout << "Name: " << name << endl;
+            cout << "Account Number: " << account_no << endl;
+            cout << "Balance: " << balance << endl;
+        }
+
+        // Static Function
+        static void Show_Count()
+        {
+            cout << "\nTotal Objects Created: " << created << endl;
+            cout << "Total Objects Destroyed: " << destroyed << endl;
+        }
+
+        // Destructor
+        ~Bank()
+        {
+            destroyed++;
+
+            cout << "\nDestructor Called." << endl;
+        }
+};
+
+// Initialize Static Members
+int Bank::created = 0;
+int Bank::destroyed = 0;
+
+int main()
+{
+    cout << "----- BANK MANAGEMENT SYSTEM -----" << endl;
+
+    {
+        // Default Constructor
+        Bank B1;
+
+        B1.Display_Details();
+
+        // Parameterized Constructor
+        Bank B2("Yasir Farooqui", 45678, 20000);
+
+        B2.Display_Details();
+
+        // Copy Constructor
+        Bank B3(B2);
+
+        B3.Display_Details();
+
+        // Deposit and Withdrawal
+        cout << "\n----- BANK TRANSACTIONS -----" << endl;
+
+        B1.Deposit(5000);
+        B1.Withdraw(2000);
+
+        B1.Display_Details();
+
+        // Object Count
+        Bank::Show_Count();
+
+    }
+
+    cout << "\n----- AFTER BLOCK ENDS -----" << endl;
+
+    Bank::Show_Count();
+
+    return 0;
+}
