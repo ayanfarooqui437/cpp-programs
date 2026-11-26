@@ -1,0 +1,62 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int main(){
+	int size;
+	cout << "Enter the Size of the Array: ";
+	cin >> size;
+	int arr[size], length;
+	int second_largest = INT_MIN;
+	int largest = INT_MIN;
+	int smallest = INT_MAX;
+	int second_smallest = INT_MAX;
+	cout << "Enter the Elements of the Array: " << endl;
+	for(int i = 0; i < size; i++){
+		cout << "Enter the [" << i << "] Element of the Array: ";
+		cin >> arr[i];
+	}
+	
+	cout << "\nArray: [";
+	for(int i = 0; i < size; i++){
+		cout << arr[i] << " ";
+	}
+	cout << "]";
+	
+	cout << "\nReversed Array: [";
+	for(int i = size - 1; i >= 0; i--){
+		cout << arr[i] << " ";
+	}
+	cout << "]";
+	
+	length = size;
+	cout << "\nLength of the Array is " << length << endl;
+	
+	for(int i = 0; i < size; i++){
+		if(arr[i] > largest){
+			second_largest = largest;
+			largest = arr[i];
+		}else if(second_largest = arr[i] && largest != arr[i]){
+			second_largest = arr[i];
+		}
+	}
+	if(second_largest == INT_MIN){
+		cout << "Second Largest Element of the Array Does Not Exist." << endl;
+	}else{
+		cout << "Second Largest Element of the Array: " << second_largest << endl;
+	}
+	
+	for(int i = 0; i < size; i++){
+		if(arr[i] < smallest){
+			second_smallest = smallest;
+			smallest = arr[i];
+		}else if(second_smallest > arr[i] && smallest != arr[i]){
+			second_smallest = arr[i];
+		}
+	}
+	if(second_smallest == INT_MAX){
+		cout << "Second Smallest Element of the Array Does Not Exist." << endl;
+	}else{
+		cout << "Second Smallest Element of the Array: " << second_smallest << endl;
+	}
+	return 0;
+}
