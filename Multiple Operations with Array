@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+int main(){
+	int num, choice;
+	cout << "Enter the Number: ";
+	cin >> num;
+	if(num < 999 && num < 10000 && num > 0){
+		cout << "INVALID INPUT." << endl;
+		return 0;
+	}
+	cout << "\n1. Reverse Digit";
+	cout << "\n2. Sum of Number and Reverse";
+	cout << "\n3. Sum of Alternative Digit";
+	cout << "\nEnter your Choice: ";
+	cin >> choice;
+
+	int d4, d3, d2, d1, temp, reverse = 0;
+	temp = num;
+	d4 = num % 10;
+	d3 = (num/10) % 10;
+	d2 = (num/100) % 10;
+	d1 = num/1000;
+	//Calculate Reverse
+	while(temp > 0){
+		reverse = reverse * 10 + temp % 10;
+		temp = temp / 10;
+	}
+	switch(choice){
+		case 1:
+			cout << "Reverse of a Digit: " << reverse << endl;
+			break;
+		case 2:
+			cout << "Sum with Reverse: " << num + reverse << endl;
+			break;
+		case 3:
+			cout << "Sum of Alternative Digits are " << d1 + d3 << "and" << d2 + d4 << endl;
+			break;
+		default:
+			cout << "INVALID CHOICE.";
+	}
+	return 0;
+}
